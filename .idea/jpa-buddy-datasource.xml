@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="6e62bce4-5b63-42cc-9e7b-f8e46f9a77e5" name="makers-twitter-clone-dev" url="jdbc:postgresql://localhost:5432/makers-twitter-clone-dev" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
