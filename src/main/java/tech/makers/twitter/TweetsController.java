@@ -1,6 +1,7 @@
 package tech.makers.twitter;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,7 @@ public class TweetsController {
         // Model is the 'view model'. We add attributes on it, which then
         // get passed into the views in `src/main/resources/templates/index.html`.
         model.addAttribute("newTweet", new Tweet());
-        model.addAttribute("tweets", tweetRepository.findAll());
+        model.addAttribute("tweets", tweetRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
         return "index";
         //     ^^^^^^^ This is how Spring knows what template to use.
     }

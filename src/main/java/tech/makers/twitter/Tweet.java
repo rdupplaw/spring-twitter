@@ -1,9 +1,7 @@
 package tech.makers.twitter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 // This is a Spring Entity.
 // It represents a Model in MVC.
@@ -12,11 +10,19 @@ import javax.persistence.Id;
 public class Tweet {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String body;
+    private Date createdAt;
 
-    protected Tweet() {}
+    // @PrePersist means that this method will run before entity is added to database
+    @PrePersist
+    protected void onCreate() {
+        createdAt = new Date();
+    }
+
+    protected Tweet() {
+    }
 
     public Tweet(String body) {
         this.body = body;
@@ -33,5 +39,9 @@ public class Tweet {
 
     public String getBody() {
         return body;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
     }
 }

@@ -33,4 +33,16 @@ public class SubmitsTweetsFeatureTest {
         driver.findElement(By.id("tweet-form-submit")).click();
         assertThat(driver.findElement(By.tagName("body")).getText()).contains("This is a tweet!");
     }
+
+    @Test
+    public void tweetsShouldShowInReverseChronologicalOrder() throws Exception {
+        driver.get("http://localhost:9990/");
+        driver.findElement(By.id("tweet-form-body")).sendKeys("This is a tweet!");
+        driver.findElement(By.id("tweet-form-submit")).click();
+        driver.findElement(By.id("tweet-form-body")).sendKeys("This is another tweet!");
+        driver.findElement(By.id("tweet-form-submit")).click();
+
+        // "This is another tweet!" should show before "This is a tweet!"
+        assertThat(driver.findElement(By.tagName("body")).getText()).contains("This is another tweet!\nThis is a tweet!");
+    }
 }
