@@ -16,6 +16,8 @@ public class TweetsController {
     // it will magically be there for us to use!
     @Autowired
     private TweetRepository tweetRepository;
+    @Autowired
+    private TweetService tweetService;
 
     // This is another annotation.
     // It tells Spring what route it should watch out for
@@ -25,7 +27,7 @@ public class TweetsController {
         // Model is the 'view model'. We add attributes on it, which then
         // get passed into the views in `src/main/resources/templates/index.html`.
         model.addAttribute("newTweet", new Tweet());
-        model.addAttribute("tweets", tweetRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
+        model.addAttribute("tweets", tweetService.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
         return "index";
         //     ^^^^^^^ This is how Spring knows what template to use.
     }
