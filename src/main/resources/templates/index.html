@@ -8,7 +8,7 @@
     <h1>Twitter</h1>
 
     <!-- These `th:` attributes are thymeleaf annotations. They're template placeholders. -->
-    <form action="#" th:action="@{/tweets}" th:object="${newTweet}" method="post">
+    <form action="#" method="post" th:action="@{/tweets}" th:object="${newTweetForm}">
         <!--                                ^^^^^^^^^^^^^^^^^^^^^^^ This tells Thymeleaf to template the form
                                                                     based on our newTweet set up in the controller. -->
         <!--         ^^^^^^^^^^^^^^^^^^^^^^ This tells Thymeleaf to submit the form to /tweets -->

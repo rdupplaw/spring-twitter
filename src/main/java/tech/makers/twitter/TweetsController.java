@@ -24,7 +24,7 @@ public class TweetsController {
     public String index(Model model) {
         // Model is the 'view model'. We add attributes on it, which then
         // get passed into the views in `src/main/resources/templates/index.html`.
-        model.addAttribute("newTweet", new Tweet());
+        model.addAttribute("newTweetForm", new TweetForm());
         model.addAttribute("tweets", tweetService.findAll(Sort.by(Sort.Direction.DESC, "createdAt")));
         return "index";
         //     ^^^^^^^ This is how Spring knows what template to use.
@@ -32,12 +32,12 @@ public class TweetsController {
 
     // This is like @GetMapping, but for POST requests.
     @PostMapping("/tweets")
-    public String create(@ModelAttribute Tweet tweet) {
+    public String create(@ModelAttribute TweetForm tweetForm) {
         //               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
         // This `ModelAttribute` is actually an instance of our entity Tweet.
         // Auto-constructed for us based on the parameters in the POST request.
         // So we just need to save it!
-        tweetService.save(tweet);
+        tweetService.save(tweetForm.getBody());
         return "redirect:/";
         // This is a special string that means 'redirect me to:' and then we give
         // it '/' so it redirects to the root.

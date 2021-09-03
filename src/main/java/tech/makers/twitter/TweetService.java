@@ -16,7 +16,8 @@ public class TweetService {
         return tweetRepository.findAll(sort);
     }
 
-    public Tweet save(Tweet tweet) {
+    public Tweet save(String body) {
+        Tweet tweet = new Tweet(body);
         return tweetRepository.save(tweet);
     }
 }
