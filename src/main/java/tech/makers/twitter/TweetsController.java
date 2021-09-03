@@ -15,8 +15,6 @@ public class TweetsController {
     // So when we call any of our controller methods,
     // it will magically be there for us to use!
     @Autowired
-    private TweetRepository tweetRepository;
-    @Autowired
     private TweetService tweetService;
 
     // This is another annotation.
@@ -39,7 +37,7 @@ public class TweetsController {
         // This `ModelAttribute` is actually an instance of our entity Tweet.
         // Auto-constructed for us based on the parameters in the POST request.
         // So we just need to save it!
-        tweetRepository.save(tweet);
+        tweetService.save(tweet);
         return "redirect:/";
         // This is a special string that means 'redirect me to:' and then we give
         // it '/' so it redirects to the root.

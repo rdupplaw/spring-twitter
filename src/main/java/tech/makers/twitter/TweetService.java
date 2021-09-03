@@ -15,4 +15,8 @@ public class TweetService {
     public List<Tweet> findAll(Sort sort) {
         return tweetRepository.findAll(sort);
     }
+
+    public Tweet save(Tweet tweet) {
+        return tweetRepository.save(tweet);
+    }
 }
